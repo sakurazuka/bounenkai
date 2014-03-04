@@ -50,6 +50,7 @@ end
 #gem "god", "~> 0.13.2" 
 
 gem "haml", "~> 4.0.3" 
+gem "haml-rails", "~> 0.5.3"
 gem "bootstrap-sass", "~> 2.3.1.0"
 gem "jquery-ui-rails", "~> 4.0.2"
 gem "kaminari", "~> 0.14.1"
