@@ -3,10 +3,6 @@ require "spec_helper"
 describe EventsController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/events").should route_to("events#index")
-    end
-
     it "routes to #new" do
       get("/events/new").should route_to("events#new")
     end

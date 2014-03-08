@@ -19,6 +19,9 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MembersController do
+  before(:each) do
+    @event = create(:event)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Member. As you add validations to Member, be sure to
@@ -30,25 +33,9 @@ describe MembersController do
   # MembersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all members as @members" do
-      member = Member.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:members).should eq([member])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested member as @member" do
-      member = Member.create! valid_attributes
-      get :show, {:id => member.to_param}, valid_session
-      assigns(:member).should eq(member)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new member as @member" do
-      get :new, {}, valid_session
+      get :new, {:event_id => @event.id}, valid_session
       assigns(:member).should be_a_new(Member)
     end
   end
@@ -56,7 +43,7 @@ describe MembersController do
   describe "GET edit" do
     it "assigns the requested member as @member" do
       member = Member.create! valid_attributes
-      get :edit, {:id => member.to_param}, valid_session
+      get :edit, {:id => member.to_param, :event_id => @event.id}, valid_session
       assigns(:member).should eq(member)
     end
   end
@@ -65,19 +52,20 @@ describe MembersController do
     describe "with valid params" do
       it "creates a new Member" do
         expect {
-          post :create, {:member => valid_attributes}, valid_session
+          post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
         }.to change(Member, :count).by(1)
       end
 
       it "assigns a newly created member as @member" do
-        post :create, {:member => valid_attributes}, valid_session
+        post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
         assigns(:member).should be_a(Member)
         assigns(:member).should be_persisted
       end
 
       it "redirects to the created member" do
-        post :create, {:member => valid_attributes}, valid_session
-        response.should redirect_to(Member.last)
+        post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
+        # response.should redirect_to(Member.last)
+        response.should redirect_to(Event.find(@event.id))
       end
     end
 
@@ -85,14 +73,14 @@ describe MembersController do
       it "assigns a newly created but unsaved member as @member" do
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {  }}, valid_session
+        post :create, {:member => {  }, :event_id => @event.id}, valid_session
         assigns(:member).should be_a_new(Member)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {  }}, valid_session
+        post :create, {:member => {  }, :event_id => @event.id}, valid_session
         response.should render_template("new")
       end
     end
@@ -107,19 +95,20 @@ describe MembersController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Member.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => member.to_param, :member => { "these" => "params" }}, valid_session
+        put :update, {:id => member.to_param, :member => { "these" => "params" }, :event_id => @event.id}, valid_session
       end
 
       it "assigns the requested member as @member" do
         member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes}, valid_session
+        put :update, {:id => member.to_param, :member => valid_attributes, :event_id => @event.id}, valid_session
         assigns(:member).should eq(member)
       end
 
       it "redirects to the member" do
         member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes}, valid_session
-        response.should redirect_to(member)
+        put :update, {:id => member.to_param, :member => valid_attributes, :event_id => @event.id}, valid_session
+        # response.should redirect_to(member)
+        response.should redirect_to(Event.find(@event.id))
       end
     end
 
@@ -128,7 +117,7 @@ describe MembersController do
         member = Member.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {  }}, valid_session
+        put :update, {:id => member.to_param, :member => {  }, :event_id => @event.id}, valid_session
         assigns(:member).should eq(member)
       end
 
@@ -136,7 +125,7 @@ describe MembersController do
         member = Member.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {  }}, valid_session
+        put :update, {:id => member.to_param, :member => {  }, :event_id => @event.id}, valid_session
         response.should render_template("edit")
       end
     end
@@ -146,14 +135,15 @@ describe MembersController do
     it "destroys the requested member" do
       member = Member.create! valid_attributes
       expect {
-        delete :destroy, {:id => member.to_param}, valid_session
+        delete :destroy, {:id => member.to_param, :event_id => @event.id}, valid_session
       }.to change(Member, :count).by(-1)
     end
 
     it "redirects to the members list" do
       member = Member.create! valid_attributes
-      delete :destroy, {:id => member.to_param}, valid_session
-      response.should redirect_to(members_url)
+      delete :destroy, {:id => member.to_param, :event_id => @event.id}, valid_session
+      # response.should redirect_to(members_url)
+      response.should redirect_to(Event.find(@event.id))
     end
   end
 

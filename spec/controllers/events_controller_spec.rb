@@ -30,14 +30,6 @@ describe EventsController do
   # EventsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all events as @events" do
-      event = Event.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:events).should eq([event])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested event as @event" do
       event = Event.create! valid_attributes

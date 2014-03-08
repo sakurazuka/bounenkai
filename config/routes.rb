@@ -1,7 +1,7 @@
 Bounenkai::Application.routes.draw do
 
-  resources :events do
-    resources :members
+  resources :events, except: :index do
+    resources :members, except: [:index, :show] 
   end
 
   resources :top, only: :index
