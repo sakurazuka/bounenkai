@@ -17,7 +17,6 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        # format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.html { redirect_to Event.find(params[:event_id]), notice: 'Member was successfully created.' }
         format.json { render action: 'show', status: :created, location: @member }
       else
@@ -32,7 +31,6 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        # format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.html { redirect_to Event.find(params[:event_id]), notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
@@ -47,7 +45,6 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     respond_to do |format|
-      # format.html { redirect_to members_url }
       format.html { redirect_to Event.find(params[:event_id])}
       format.json { head :no_content }
     end
