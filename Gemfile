@@ -45,19 +45,21 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # サーバ要件に合わせて使用
-#gem "unicorn-rails", "~> 1.0.1" 
+#gem "unicorn-rails", "~> 1.0.1"
 #gem "redis-rails", "~> 3.2.3"
-#gem "god", "~> 0.13.2" 
+#gem "god", "~> 0.13.2"
 
-gem "haml", "~> 4.0.3" 
+gem "haml", "~> 4.0.3"
 gem "haml-rails", "~> 0.5.3"
 gem "bootstrap-sass", "~> 2.3.1.0"
 gem "jquery-ui-rails", "~> 4.0.2"
 gem "kaminari", "~> 0.14.1"
+gem "settingslogic", "~> 2.0.9"
+gem "simple_form", "~> 3.0.1"
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
-  gem "shoulda-matchers", "~> 2.3.0" 
+  gem "shoulda-matchers", "~> 2.3.0"
   gem "factory_girl_rails", "~> 4.2.1"
   gem "guard-rspec", "~> 2.5.1"
   gem "guard-bundler", "~> 1.0.0"
@@ -71,9 +73,9 @@ group :development, :test do
   gem "table_print", "~> 1.1.5"
   gem "bullet", "~> 4.5.0"
   gem "twitter-bootstrap-rails", "~> 2.2.6"
-  gem "meta_request", "~> 0.2.6" 
-  gem "brakeman", "~> 2.0.0" 
-  gem "guard-brakeman", "~> 0.7.0" 
+  gem "meta_request", "~> 0.2.6"
+  gem "brakeman", "~> 2.0.0"
+  gem "guard-brakeman", "~> 0.7.0"
 
   # 通知Mac用
   gem 'rb-fsevent'

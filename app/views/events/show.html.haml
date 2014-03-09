@@ -1,6 +1,58 @@
-%p#notice= notice
+%h1= @event.name
+企画者
+= @event.planner
+%br
+%br
 
+= field_set_tag '■イベント' do
+  = @event.detail
+  %br
+  %br
+  = link_to 'イベント内容を編集する(要パスワード)', edit_event_path(@event), class: 'btn btn-warning'
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+%br
+
+= field_set_tag '■日程' do
+  %table.table-bordered
+    %tr
+      %th 参加者名
+      %th 希望日１
+      %th 希望日２
+      %th 希望日３
+    - @event.members.each do |member|
+      %tr
+        %td
+        %td
+        %td
+        %td
+    %tr
+      %td= link_to 'このイベントに参加する', new_event_member_path(@event), class: 'btn btn-primary'
+      %td
+      %td
+      %td
+
+%br
+
+= field_set_tag '■場所' do
+  %table.table-bordered
+    %tr
+      %th 参加者名
+      %th 希望場所１
+      %th 希望場所２
+      %th 希望場所３
+    - @event.members.each do |member|
+      %tr
+        %td
+        %td
+        %td
+        %td
+    %tr
+      %td= link_to 'このイベントに参加する', new_event_member_path(@event), class: 'btn btn-primary'
+      %td
+      %td
+      %td
+
+%br
+
+= field_set_tag '■掲示板' do
+  = @event.planner

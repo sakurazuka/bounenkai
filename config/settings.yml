@@ -1,0 +1,11 @@
+defaults: &defaults
+  app_name: '忘年会.com'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -23,7 +23,7 @@ describe EventsController do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { name: 'test_name', detail: 'test_detail', password: '0000' } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -77,14 +77,14 @@ describe EventsController do
       it "assigns a newly created but unsaved event as @event" do
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => {  }}, valid_session
+        post :create, {:event => { password: 'invalid' }}, valid_session
         assigns(:event).should be_a_new(Event)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => {  }}, valid_session
+        post :create, {:event => { password: 'invalid' }}, valid_session
         response.should render_template("new")
       end
     end
@@ -98,8 +98,8 @@ describe EventsController do
         # specifies that the Event created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Event.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => event.to_param, :event => { "these" => "params" }}, valid_session
+        Event.any_instance.should_receive(:update).with({ "name" => "params" })
+        put :update, {:id => event.to_param, :event => { "name" => "params" }}, valid_session
       end
 
       it "assigns the requested event as @event" do
@@ -120,7 +120,7 @@ describe EventsController do
         event = Event.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
-        put :update, {:id => event.to_param, :event => {  }}, valid_session
+        put :update, {:id => event.to_param, :event => { password: 'invalid' }}, valid_session
         assigns(:event).should eq(event)
       end
 
@@ -128,7 +128,7 @@ describe EventsController do
         event = Event.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
-        put :update, {:id => event.to_param, :event => {  }}, valid_session
+        put :update, {:id => event.to_param, :event => { password: 'invalid' }}, valid_session
         response.should render_template("edit")
       end
     end
