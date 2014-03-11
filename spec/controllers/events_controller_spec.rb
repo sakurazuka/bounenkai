@@ -24,6 +24,7 @@ describe EventsController do
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { name: 'test_name', detail: 'test_detail', password: '0000' } }
+  let(:board_valid_attributes) { { name: 'test_name', tweet: 'test_tweet' } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -145,8 +146,49 @@ describe EventsController do
     it "redirects to the events list" do
       event = Event.create! valid_attributes
       delete :destroy, {:id => event.to_param}, valid_session
-      response.should redirect_to(events_url)
+      response.should redirect_to(top_index_url)
     end
   end
 
+  describe "POST bulk_create" do
+    describe "with valid params" do
+      it "creates a new Board" do
+        event = Event.create! valid_attributes
+        expect {
+          post :bulk_create, {:id => event.to_param, :board => board_valid_attributes}, valid_session
+        }.to change(Board, :count).by(1)
+      end
+
+      it "assigns a newly created board as @board" do
+        event = Event.create! valid_attributes
+        post :bulk_create, {:id => event.to_param, :board => board_valid_attributes}, valid_session
+        assigns(:board).should be_a(Board)
+        assigns(:board).should be_persisted
+      end
+
+      it "redirects to the created board" do
+        event = Event.create! valid_attributes
+        post :bulk_create, {:id => event.to_param, :board => board_valid_attributes}, valid_session
+        response.should redirect_to(Event.last)
+      end
+    end
+
+    # describe "with invalid params" do
+      # it "assigns a newly created but unsaved board as @board" do
+        # event = Event.create! valid_attributes
+        # # Trigger the behavior that occurs when invalid params are submitted
+        # Board.any_instance.stub(:save).and_return(false)
+        # post :bulk_create, {:id => event.to_param, :board => { password: 'invalid' }}, valid_session
+        # assigns(:board).should be_a_new(Board)
+      # end
+
+      # it "re-renders the 'new' template" do
+        # event = Event.create! valid_attributes
+        # # Trigger the behavior that occurs when invalid params are submitted
+        # Board.any_instance.stub(:save).and_return(false)
+        # post :bulk_create, {:id => event.to_param, :board => { password: 'invalid' }}, valid_session
+        # response.should render_template("new")
+      # end
+    # end
+  end
 end

@@ -55,4 +55,32 @@
 %br
 
 = field_set_tag '■掲示板' do
-  = @event.planner
+  %table.table-bordered
+    - if @event.boards.present?
+      - @event.boards.each do |board|
+        %tr
+          %td
+            投稿者
+            = board.name
+            %br
+            = board.tweet
+    - else
+      投稿はありません。
+
+  %br
+
+  = field_set_tag '■投稿欄' do
+    - @board = @event.boards.build
+    = simple_form_for @board, url: bulk_create_event_path do |f|
+      - if @board.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@board.errors.count, "error")} prohibited this board from being saved:"
+          %ul
+            - @board.errors.full_messages.each do |msg|
+              %li= msg
+
+      = f.input :name
+      = f.input :tweet
+
+      .actions
+        = f.submit '投稿', class: 'btn btn-primary'

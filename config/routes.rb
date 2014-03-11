@@ -1,7 +1,11 @@
 Bounenkai::Application.routes.draw do
 
   resources :events, except: :index do
-    resources :members, except: [:index, :show] 
+    member do
+      post :bulk_create
+    end
+
+    resources :members, except: [:index, :show]
   end
 
   resources :top, only: :index

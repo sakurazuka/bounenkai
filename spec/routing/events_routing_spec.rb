@@ -27,5 +27,8 @@ describe EventsController do
       delete("/events/1").should route_to("events#destroy", :id => "1")
     end
 
+    it "routes to #bulk_create" do
+      post("/events/1/bulk_create").should route_to("events#bulk_create", :id => "1")
+    end
   end
 end
