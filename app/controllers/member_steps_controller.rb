@@ -1,0 +1,2 @@
+class MemberStepsController < ApplicationController
+end

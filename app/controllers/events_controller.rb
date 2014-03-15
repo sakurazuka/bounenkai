@@ -8,7 +8,8 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    # @event = Event.new
+    redirect_to event_steps_url
   end
 
   # GET /events/1/edit

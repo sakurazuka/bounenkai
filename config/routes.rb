@@ -9,6 +9,8 @@ Bounenkai::Application.routes.draw do
   end
 
   resources :top, only: :index
+  resources :event_steps
+  resources :member_steps
 
   root 'top#index'
 

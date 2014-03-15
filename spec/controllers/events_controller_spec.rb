@@ -42,7 +42,8 @@ describe EventsController do
   describe "GET new" do
     it "assigns a new event as @event" do
       get :new, {}, valid_session
-      assigns(:event).should be_a_new(Event)
+      # assigns(:event).should be_a_new(Event)
+      response.should redirect_to(event_steps_url)
     end
   end
 
