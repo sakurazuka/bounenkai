@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :bulk_create]
+  before_action :set_event, only: [:show, :edit, :destroy, :bulk_create]
 
   # GET /events/1
   # GET /events/1.json
@@ -8,42 +8,19 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    # @event = Event.new
-    redirect_to event_steps_url
+    @event = Event.new
+    if @event.save
+      session[:event_id] = @event.id
+      redirect_to event_steps_url
+    else
+      redirect_to top_index_url
+    end
   end
 
   # GET /events/1/edit
   def edit
-  end
-
-  # POST /events
-  # POST /events.json
-  def create
-    @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: '新しいイベントを作成しました。' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
-  def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'イベント内容を変更しました。' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    session[:event_id] = @event.id
+    redirect_to event_steps_url
   end
 
   # DELETE /events/1

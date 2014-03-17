@@ -1,3 +1,5 @@
+= render 'error'
+
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
   - if @event.errors.any?
     #error_explanation
@@ -6,8 +8,6 @@
         - @event.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.input :name
-  = f.input :detail
   = f.input :planner
   = f.input :password
 
