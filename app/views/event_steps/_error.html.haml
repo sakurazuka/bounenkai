@@ -1,8 +1,0 @@
-- if @event.errors.any?
-  .error_messages
-    %h2
-      = pluralize(@event.errors.count, "error")
-      prohibited this user from being saved:
-    %ul
-      - @event.errors.full_messages.each do |msg|
-        %li= msg

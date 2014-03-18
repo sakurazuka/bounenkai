@@ -6,8 +6,10 @@ class CreateSchedulePlaces < ActiveRecord::Migration
       t.string      :address
       t.integer     :price
 
+      t.datetime    :deleted_at
       t.timestamps
     end
+    add_index :schedule_places, :deleted_at
   end
 
   def down

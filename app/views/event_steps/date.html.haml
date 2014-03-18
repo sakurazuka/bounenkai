@@ -1,15 +1,7 @@
-= render 'error'
-
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
+  - @event.schedule_dates.build if @event.schedule_dates.count == 0
+  = f.fields_for :schedule_dates do |d|
+    = d.input :date
 
-  暫定：
-  = f.input :name
-
-  .actions
+  .form-actions
     = f.submit '次へ', class: 'btn btn-primary'

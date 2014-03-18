@@ -57,6 +57,7 @@ gem "kaminari", "~> 0.14.1"
 gem "settingslogic", "~> 2.0.9"
 gem "simple_form", "~> 3.0.1"
 gem "wicked", "~> 1.0.2"
+gem "paranoia", "~> 2.0.2"
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"

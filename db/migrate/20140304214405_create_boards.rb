@@ -5,8 +5,10 @@ class CreateBoards < ActiveRecord::Migration
       t.string      :name
       t.text        :tweet
 
+      t.datetime    :deleted_at
       t.timestamps
     end
+    add_index :boards, :deleted_at
   end
 
   def down

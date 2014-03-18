@@ -5,8 +5,10 @@ class CreateMembers < ActiveRecord::Migration
       t.string      :name
       t.integer     :password
 
+      t.datetime    :deleted_at
       t.timestamps
     end
+    add_index :members, :deleted_at
   end
 
   def down
