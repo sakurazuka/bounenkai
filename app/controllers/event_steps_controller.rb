@@ -28,6 +28,6 @@ class EventStepsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       # params[:event]
-      params.require(:event).permit(:name, :detail, :planner, :password)
+      params.require(:event).permit(:name, :detail, :planner, :password, :close_date, {schedule_dates_attributes: [:id, :date]}, {schedule_places_attributes: [:id, :name, :address, :price]})
     end
 end

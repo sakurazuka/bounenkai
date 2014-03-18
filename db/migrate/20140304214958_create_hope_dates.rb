@@ -4,8 +4,10 @@ class CreateHopeDates < ActiveRecord::Migration
       t.references  :member
       t.references  :schedule_date
 
+      t.datetime    :deleted_at
       t.timestamps
     end
+    add_index :hope_dates, :deleted_at
   end
 
   def down

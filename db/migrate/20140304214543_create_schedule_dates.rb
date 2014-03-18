@@ -4,8 +4,10 @@ class CreateScheduleDates < ActiveRecord::Migration
       t.references  :event
       t.date        :date
 
+      t.datetime    :deleted_at
       t.timestamps
     end
+    add_index :schedule_dates, :deleted_at
   end
 
   def down
