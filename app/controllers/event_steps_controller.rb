@@ -8,14 +8,14 @@ class EventStepsController < ApplicationController
   end
 
   def update
-    @event.attributes = event_params
-    if @event.save(context: step)
-      case step
-      when :mail then redirect_to event_url(@event), notice: "登録完了しました。"
-      else render_wizard @event
-      end
+    if step == steps.last
+      params[:event][:status] = 'active'
+      @event.update_attributes(event_params)
+      redirect_to event_url(@event), notice: "登録しました。"
     else
-      render step
+      params[:event][:status] = step.to_s
+      @event.update_attributes(event_params)
+      render_wizard @event
     end
   end
 
@@ -28,6 +28,6 @@ class EventStepsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       # params[:event]
-      params.require(:event).permit(:name, :detail, :planner, :password, :close_date, {schedule_dates_attributes: [:id, :date]}, {schedule_places_attributes: [:id, :name, :address, :price]})
+      params.require(:event).permit(:name, :detail, :planner, :password, :close_date, :status, {schedule_dates_attributes: [:id, :date]}, {schedule_places_attributes: [:id, :name, :address, :price]})
     end
 end

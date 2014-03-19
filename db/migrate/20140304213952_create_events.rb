@@ -9,6 +9,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer  :due_date_id
       t.integer  :due_place_id
 
+      t.string   :status
       t.datetime :deleted_at
       t.timestamps
     end

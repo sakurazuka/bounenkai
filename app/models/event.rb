@@ -13,12 +13,25 @@ class Event < ActiveRecord::Base
   validates :planner,
             :password,
             presence: true,
-            on: :planner
+            if: :active_or_planner?
 
   validates :name,
             :detail,
             :close_date,
             presence: true,
-            on: :detail
+            if: :active_or_detail?
 
+  def active?
+    status == 'active'
+  end
+
+  def active_or_planner?
+    # status.include?('planner') || active?
+    status == 'planner' || status == 'active'
+  end
+
+  def active_or_detail?
+    # status.include?('detail') || active?
+    status == 'detail' || status == 'active'
+  end
 end
