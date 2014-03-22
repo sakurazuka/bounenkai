@@ -1,7 +1,7 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
-  = f.input :name
-  = f.input :detail
-  = f.input :close_date
+  = f.input :name, required: true
+  = f.input :detail, required: true
+  = f.input :close_date, required: true
 
   .form-actions
     = f.submit '次へ', class: 'btn btn-primary'

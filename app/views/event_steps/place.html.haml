@@ -1,6 +1,6 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
   - @event.schedule_places.build if @event.schedule_places.count == 0
-  = f.fields_for :schedule_places do |p|
+  = f.simple_fields_for :schedule_places do |p|
     = p.input :name
     = p.input :address
     = p.input :price

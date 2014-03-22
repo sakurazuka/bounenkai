@@ -58,6 +58,8 @@ gem "settingslogic", "~> 2.0.9"
 gem "simple_form", "~> 3.0.1"
 gem "wicked", "~> 1.0.2"
 gem "paranoia", "~> 2.0.2"
+gem 'validates_timeliness', '~> 3.0.14'
+gem 'validates_email_format_of', '~> 1.5.3'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"

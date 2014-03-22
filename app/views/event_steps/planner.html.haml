@@ -1,6 +1,6 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
-  = f.input :planner
-  = f.input :password
+  = f.input :planner, required: true
+  = f.input :password, required: true
 
   .form-actions
     = f.submit '次へ', class: 'btn btn-primary'

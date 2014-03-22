@@ -1,6 +1,6 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
   - @event.schedule_dates.build if @event.schedule_dates.count == 0
-  = f.fields_for :schedule_dates do |d|
+  = f.simple_fields_for :schedule_dates do |d|
     = d.input :date
 
   .form-actions

@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20140304215036) do
     t.integer  "password"
     t.integer  "due_date_id"
     t.integer  "due_place_id"
-    t.string   "status"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
