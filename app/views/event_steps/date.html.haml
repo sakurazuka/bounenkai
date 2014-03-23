@@ -1,7 +1,12 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
-  - @event.schedule_dates.build if @event.schedule_dates.count == 0
-  = f.simple_fields_for :schedule_dates do |d|
-    = d.input :date
+
+  %table.tabl.table-condensede
+    - @event.schedule_dates.build if @event.schedule_dates.count == 0
+    = f.simple_fields_for :schedule_dates do |d|
+      %tr
+        %td{nowrap: "nowrap"}
+          = d.input :date, include_blank: true
 
   .form-actions
+    = f.submit '日付を追加する', class: 'btn btn-default', name: 'add'
     = f.submit '次へ', class: 'btn btn-primary'

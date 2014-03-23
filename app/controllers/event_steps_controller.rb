@@ -9,7 +9,12 @@ class EventStepsController < ApplicationController
 
   def update
     @event.update_attributes(event_params)
-    if step == steps.last
+
+    if params[:add].present?
+      @event.schedule_dates.build if step == :date
+      @event.schedule_places.build if step == :place
+      render step
+    elsif step == steps.last
       redirect_to event_url(@event), notice: "登録しました。"
     else
       render_wizard @event
