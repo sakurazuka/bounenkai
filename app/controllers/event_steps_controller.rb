@@ -8,15 +8,16 @@ class EventStepsController < ApplicationController
   end
 
   def update
-    @event.update_attributes(event_params)
-
     if params[:add].present?
+      @event.update_attributes(event_params)
       @event.schedule_dates.build if step == :date
       @event.schedule_places.build if step == :place
       render step
     elsif step == steps.last
+      # SendMail.invitation(@event.id, params[:mail_address]).deliver if params[:send].present?
       redirect_to event_url(@event), notice: "登録しました。"
     else
+      @event.update_attributes(event_params)
       render_wizard @event
     end
   end

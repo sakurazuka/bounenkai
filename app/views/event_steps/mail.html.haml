@@ -1,6 +1,6 @@
 = simple_form_for @event, :url => wizard_path, :method => :put do |f|
-  暫定：
-  = f.input :name, required: true
+  = text_area_tag :mail_address
 
   .form-actions
-    = f.submit '登録', class: 'btn btn-primary'
+    = f.submit 'メール送信して登録完了', class: 'btn btn-warning', name: 'send'
+    = f.submit 'メール送信せずに登録完了', class: 'btn btn-primary'

@@ -1,5 +1,5 @@
 defaults: &defaults
-  app_name: '忘年会.com'
+  app_name: '忘年会.rb'
 
 development:
   <<: *defaults
