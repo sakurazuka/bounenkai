@@ -5,12 +5,14 @@ Bounenkai::Application.routes.draw do
       post :bulk_create
     end
 
-    resources :members, except: [:index, :show]
+    resources :event_steps
+
+    resources :members, except: [:index, :show, :create, :update] do
+      resources :member_steps
+    end
   end
 
   resources :top, only: :index
-  resources :event_steps
-  resources :member_steps
 
   root 'top#index'
 

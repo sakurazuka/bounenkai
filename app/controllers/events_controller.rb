@@ -10,8 +10,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     if @event.save
-      session[:event_id] = @event.id
-      redirect_to event_steps_url
+      redirect_to event_event_steps_url(@event)
     else
       redirect_to top_index_url
     end
@@ -19,8 +18,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    session[:event_id] = @event.id
-    redirect_to event_steps_url
+    redirect_to event_event_steps_url(@event)
   end
 
   # DELETE /events/1

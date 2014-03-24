@@ -1,43 +1,20 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:new, :edit, :destroy]
+  before_action :set_member, only: [:edit, :destroy]
 
   # GET /members/new
   def new
     @member = Member.new
+    if @member.save
+      redirect_to event_member_member_steps_url(@event, @member)
+    else
+      redirect_to event_path_url(@event)
+    end
   end
 
   # GET /members/1/edit
   def edit
-  end
-
-  # POST /members
-  # POST /members.json
-  def create
-    @member = Member.new(member_params)
-
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to Event.find(params[:event_id]), notice: 'Member was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @member }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
-  def update
-    respond_to do |format|
-      if @member.update(member_params)
-        format.html { redirect_to Event.find(params[:event_id]), notice: 'Member was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to event_member_member_steps_url(@event, @member)
   end
 
   # DELETE /members/1
@@ -51,7 +28,12 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:event_id])
+    end
+
+    # use callbacks to share common setup or constraints between actions.
     def set_member
       @member = Member.find(params[:id])
     end

@@ -36,7 +36,8 @@ describe MembersController do
   describe "GET new" do
     it "assigns a new member as @member" do
       get :new, {:event_id => @event.id}, valid_session
-      assigns(:member).should be_a_new(Member)
+      # assigns(:member).should be_a_new(Member)
+      response.should redirect_to(event_member_member_steps_url(@event, Member.last))
     end
   end
 
@@ -45,89 +46,6 @@ describe MembersController do
       member = Member.create! valid_attributes
       get :edit, {:id => member.to_param, :event_id => @event.id}, valid_session
       assigns(:member).should eq(member)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Member" do
-        expect {
-          post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
-        }.to change(Member, :count).by(1)
-      end
-
-      it "assigns a newly created member as @member" do
-        post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
-        assigns(:member).should be_a(Member)
-        assigns(:member).should be_persisted
-      end
-
-      it "redirects to the created member" do
-        post :create, {:member => valid_attributes, :event_id => @event.id}, valid_session
-        # response.should redirect_to(Member.last)
-        response.should redirect_to(Event.find(@event.id))
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved member as @member" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {  }, :event_id => @event.id}, valid_session
-        assigns(:member).should be_a_new(Member)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {  }, :event_id => @event.id}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested member" do
-        member = Member.create! valid_attributes
-        # Assuming there are no other members in the database, this
-        # specifies that the Member created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Member.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => member.to_param, :member => { "these" => "params" }, :event_id => @event.id}, valid_session
-      end
-
-      it "assigns the requested member as @member" do
-        member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes, :event_id => @event.id}, valid_session
-        assigns(:member).should eq(member)
-      end
-
-      it "redirects to the member" do
-        member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes, :event_id => @event.id}, valid_session
-        # response.should redirect_to(member)
-        response.should redirect_to(Event.find(@event.id))
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the member as @member" do
-        member = Member.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {  }, :event_id => @event.id}, valid_session
-        assigns(:member).should eq(member)
-      end
-
-      it "re-renders the 'edit' template" do
-        member = Member.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {  }, :event_id => @event.id}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
