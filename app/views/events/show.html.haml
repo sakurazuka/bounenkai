@@ -4,7 +4,9 @@
 %br
 %br
 
-= field_set_tag '■イベント' do
+.alert.alert-info
+  %h3 ■イベント
+  %br
   = @event.detail
   %br
   %br
@@ -12,7 +14,9 @@
 
 %br
 
-= field_set_tag '■日程' do
+.alert.alert-info
+  %h3 ■日程
+  %br
   %table.table-bordered
     %tr
       %th 参加者名
@@ -33,7 +37,9 @@
 
 %br
 
-= field_set_tag '■場所' do
+.alert.alert-info
+  %h3 ■場所
+  %br
   %table.table-bordered
     %tr
       %th 参加者名
@@ -54,7 +60,9 @@
 
 %br
 
-= field_set_tag '■掲示板' do
+.alert.alert-info
+  %h3 ■掲示板
+  %br
   %table.table-bordered
     - if @event.boards.present?
       - @event.boards.each do |board|
@@ -69,18 +77,20 @@
 
   %br
 
-  = field_set_tag '■投稿欄' do
-    - @board = @event.boards.build
-    = simple_form_for @board, url: bulk_create_event_path do |f|
-      - if @board.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@board.errors.count, "error")} prohibited this board from being saved:"
-          %ul
-            - @board.errors.full_messages.each do |msg|
-              %li= msg
+.alert.alert-info
+  %h3 ■投稿欄
+  %br
+  - @board = @event.boards.build
+  = simple_form_for @board, url: bulk_create_event_path do |f|
+    - if @board.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@board.errors.count, "error")} prohibited this board from being saved:"
+        %ul
+          - @board.errors.full_messages.each do |msg|
+            %li= msg
 
-      = f.input :name
-      = f.input :tweet
+    = f.input :name
+    = f.input :tweet
 
-      .actions
-        = f.submit '投稿', class: 'btn btn-primary'
+    .actions
+      = f.submit '投稿', class: 'btn btn-primary'

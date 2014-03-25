@@ -1,0 +1,6 @@
+= simple_form_for @member, :url => wizard_path, :method => :put do |f|
+  = f.input :name, required: true
+  = f.input :password, required: true
+
+  .form-actions
+    = f.submit '次へ', class: 'btn btn-primary'

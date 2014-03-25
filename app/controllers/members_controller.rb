@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = Member.new
+    @member = @event.members.build
     if @member.save
       redirect_to event_member_member_steps_url(@event, @member)
     else
