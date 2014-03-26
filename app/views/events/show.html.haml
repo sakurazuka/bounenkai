@@ -7,17 +7,18 @@
 .alert.alert-info
   %h3 ■イベント
   %br
-  = @event.detail
-  %br
+  .white_back
+    = @event.detail
   %br
   = link_to 'イベント内容を編集する(要パスワード)', edit_event_path(@event), class: 'btn btn-warning'
+  = link_to 'このイベントに参加する', new_event_member_path(@event), class: 'btn btn-success'
 
 %br
 
 .alert.alert-info
   %h3 ■日程
   %br
-  %table.table-bordered
+  %table.table-bordered.max_width.white_back
     %tr
       %th 参加者名
       %th 希望日１
@@ -30,7 +31,7 @@
         %td
         %td
     %tr
-      %td= link_to 'このイベントに参加する', new_event_member_path(@event), class: 'btn btn-primary'
+      %td
       %td
       %td
       %td
@@ -40,7 +41,7 @@
 .alert.alert-info
   %h3 ■場所
   %br
-  %table.table-bordered
+  %table.table-bordered.max_width.white_back
     %tr
       %th 参加者名
       %th 希望場所１
@@ -53,7 +54,7 @@
         %td
         %td
     %tr
-      %td= link_to 'このイベントに参加する', new_event_member_path(@event), class: 'btn btn-primary'
+      %td
       %td
       %td
       %td
@@ -63,7 +64,7 @@
 .alert.alert-info
   %h3 ■掲示板
   %br
-  %table.table-bordered
+  %table.table-bordered.max_width.white_back
     - if @event.boards.present?
       - @event.boards.each do |board|
         %tr
@@ -73,7 +74,9 @@
             %br
             = board.tweet
     - else
-      投稿はありません。
+      %tr
+        %td
+          投稿はありません。
 
   %br
 
@@ -89,8 +92,8 @@
           - @board.errors.full_messages.each do |msg|
             %li= msg
 
-    = f.input :name
-    = f.input :tweet
+    = f.input :name, input_html: { class: 'max_width' }
+    = f.input :tweet, input_html: { class: 'max_width' }
 
     .actions
       = f.submit '投稿', class: 'btn btn-primary'
