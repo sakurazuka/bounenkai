@@ -92,3 +92,7 @@ end
 #gem "cancan", "~> 1.6.9"
 # 管理画面が必要な場合
 #gem "activeadmin", "~> 0.6.0"
+
+# issue#18
+# rubocop
+gem 'rubocop', '~> 0.41.2', require: false
