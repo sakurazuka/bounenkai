@@ -73,6 +73,7 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.7', '>= 4.7.2'
   gem 'guard-brakeman', '~> 0.8.3'
   gem 'guard-rubocop', '~> 1.2'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 
   # pry
   gem 'pry-rails', '~> 0.3.4'
