@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Board do
-  it{ should validate_presence_of(:name) }
-  it{ should validate_presence_of(:tweet) }
+  it{ is_expected.to validate_presence_of(:name) }
+  it{ is_expected.to validate_presence_of(:tweet) }
 end

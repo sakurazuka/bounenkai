@@ -65,7 +65,7 @@ gem 'validates_email_format_of', '~> 1.5.3'
 group :development, :test do
   # rspec
   gem 'rspec-rails', '~> 3.5', '>= 3.5.1'
-  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1', require: false
   gem 'factory_girl_rails', '~> 4.7'
 
   # guard
