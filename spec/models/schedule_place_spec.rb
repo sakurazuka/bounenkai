@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SchedulePlace do
-  it{ should validate_presence_of(:name) }
-  it{ should validate_presence_of(:address) }
+  it{ is_expected.to validate_presence_of(:name) }
+  it{ is_expected.to validate_presence_of(:address) }
 end

@@ -51,6 +51,7 @@ end
 
 gem "haml", "~> 4.0.3"
 gem "haml-rails", "~> 0.5.3"
+gem "twitter-bootstrap-rails", "~> 2.2.6"
 gem "bootstrap-sass", "~> 2.3.1.0"
 gem "jquery-ui-rails", "~> 4.0.2"
 gem "kaminari", "~> 0.14.1"
@@ -62,28 +63,40 @@ gem 'validates_timeliness', '~> 3.0.14'
 gem 'validates_email_format_of', '~> 1.5.3'
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.13.0"
-  gem "shoulda-matchers", "~> 2.3.0"
-  gem "factory_girl_rails", "~> 4.2.1"
-  gem "guard-rspec", "~> 2.5.1"
-  gem "guard-bundler", "~> 1.0.0"
-  gem "pry-rails", "~> 0.2.2"
-  gem "pry-debugger", "~> 0.2.2"
+  # rspec
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.1'
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1', require: false
+  gem 'factory_girl_rails', '~> 4.7'
+
+  # guard
+  gem 'guard', '~> 2.14'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.2'
+  gem 'guard-brakeman', '~> 0.8.3'
+  gem 'guard-rubocop', '~> 1.2'
+
+  # pry
+  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-byebug', '~> 3.4'
+
+  # metrics
   gem "simplecov", "~> 0.7.1"
   gem "rails_best_practices", "~> 1.13.4"
-  gem "zeus", "~> 0.13.3"
+  gem 'brakeman', '~> 3.3', '>= 3.3.2'
+  gem 'rubocop', '~> 0.41.2', require: false
+
+  # debug
   gem "better_errors", "~> 0.8.0"
   gem "binding_of_caller", "~> 0.7.1"
   gem "table_print", "~> 1.1.5"
   gem "bullet", "~> 4.5.0"
-  gem "twitter-bootstrap-rails", "~> 2.2.6"
   gem "meta_request", "~> 0.2.6"
-  gem "brakeman", "~> 2.0.0"
-  gem "guard-brakeman", "~> 0.7.0"
 
   # 通知Mac用
-  gem 'rb-fsevent'
-  gem "growl", "~> 1.0.3"
+  # gem 'growl', '~> 1.0', '>= 1.0.3'
+  gem 'terminal-notifier-guard', '~> 1.7'
+
+  # linux通知用
+  # gem 'rb-fsevent'
 end
 
 # ログイン機能が必要な場合
@@ -93,6 +106,3 @@ end
 # 管理画面が必要な場合
 #gem "activeadmin", "~> 0.6.0"
 
-# issue#18
-# rubocop
-gem 'rubocop', '~> 0.41.2', require: false
