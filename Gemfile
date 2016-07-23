@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.13'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -56,7 +56,7 @@ gem "bootstrap-sass", "~> 2.3.1.0"
 gem "jquery-ui-rails", "~> 4.0.2"
 gem "kaminari", "~> 0.14.1"
 gem "settingslogic", "~> 2.0.9"
-gem "simple_form", "~> 3.0.1"
+gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem "wicked", "~> 1.0.2"
 gem "paranoia", "~> 2.0.2"
 gem 'validates_timeliness', '~> 3.0.14'
