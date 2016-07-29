@@ -68,6 +68,10 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1', require: false
   gem 'factory_girl_rails', '~> 4.7'
 
+  # integration
+  gem 'capybara', '~> 2.7', '>= 2.7.1'
+  gem 'poltergeist', '~> 1.10'
+
   # guard
   gem 'guard', '~> 2.14'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.2'
